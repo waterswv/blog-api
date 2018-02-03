@@ -13,15 +13,12 @@ function index(req, res) {
 }
 
 function create(req, res) {
-  let post = new db.Post(req.body);
-
-
-  post.save(function(err, post) {
+  db.Post.create(req.body, function(err, post) {
     if (err) {
       console.log('Error Creating Post', err);
     }
-
     res.json(post);
+
   });
 }
 

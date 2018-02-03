@@ -8,7 +8,7 @@ let PostSchema = new Schema({
   postURL: String,
   postIsLive: Boolean,
   keywords: [String],
-  postDate: Date,
+  postDate: { type: Date, default: Date.now },
   sidePostContent: String
 
 })
@@ -16,3 +16,5 @@ let PostSchema = new Schema({
 let Post = mongoose.model('Post', PostSchema);
 
 module.exports = Post;
+
+// TODO: Choose a image hosting service and generate urls for Post Images
