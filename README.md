@@ -4,6 +4,8 @@
 * Node.js
 * MongoDB
 * AWS
+* Express.js
+* Mongoose.js
 
 ##### End Points
 * Overview: [api.bryanmierke.com](api.bryanmierke.com)

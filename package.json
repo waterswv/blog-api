@@ -1,0 +1,23 @@
+{
+  "name": "blog-api",
+  "version": "1.0.0",
+  "description": "API data for BryanMierke.com",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waterswv/blog-api.git"
+  },
+  "author": "Bryan Mierke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/waterswv/blog-api/issues"
+  },
+  "homepage": "https://github.com/waterswv/blog-api#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^5.0.3"
+  }
+}
