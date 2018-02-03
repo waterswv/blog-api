@@ -40,6 +40,18 @@ app.post('/api/post', controllers.post.create);
 app.get('/api/post/:post_id', controllers.post.show);
 app.delete('/api/post/:id', controllers.post.destroy);
 
+// Word Controller Routes
+app.get('/api/word', controllers.word.index);
+app.post('/api/word', controllers.word.create);
+app.get('/api/word/:word_id', controllers.word.show);
+app.delete('/api/word/:id', controllers.word.destroy);
+
+// Fact Controller Routes
+app.get('/api/fact', controllers.fact.index);
+app.post('/api/fact', controllers.fact.create);
+app.get('/api/fact/:fact_id', controllers.fact.show);
+app.delete('/api/fact/:id', controllers.fact.destroy);
+
  /**********
   * SERVER *
   **********/
