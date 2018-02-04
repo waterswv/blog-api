@@ -66,7 +66,9 @@ app.delete('/api/fact/:id', controllers.fact.destroy);
 
  /**********
   * SERVER *
+  Heroku: https://rocky-waters-28937.herokuapp.com/ | https://git.heroku.com/rocky-waters-28937.git
   **********/
+
 
  app.listen(process.env.PORT || 8000, function() {
    console.log("Express Server is up and running on http://localhost:8000/");
