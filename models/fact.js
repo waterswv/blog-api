@@ -6,8 +6,8 @@ let FactSchema = new Schema({
   dailyFactTitle: String,
   dailyFactContent: String,
   dailyFactURL: String,
-  FactIsLive: Boolean,
-  dailyFactDate: Date
+  factIsLive: Boolean,
+  dailyFactDate: { type: Date, default: Date.now }
 
 })
 

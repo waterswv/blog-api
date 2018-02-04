@@ -7,7 +7,7 @@ let WordSchema = new Schema({
   dailyWordDefinition: String,
   dailyWordURL: String,
   wordIsLive: Boolean,
-  dailyWordDate: Date
+  dailyWordDate: { type: Date, default: Date.now }
 
 })
 
