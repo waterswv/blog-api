@@ -4,5 +4,4 @@ module.exports = {
   post: require('./postController'),
   fact: require('./factController'),
   word: require('./wordController'),
-  page: require('./pageController')
 }
