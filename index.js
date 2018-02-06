@@ -138,7 +138,7 @@ app.get('/:post_id', function(req, res, next) {
           }
           let theWord = word[0];
           res.render('singlepost',
-            {title: 'Bryan Mierke circa 1983',
+            {theTitle: `<a href="/">The Blog</a></h1>`,
             bodycss: 'right-sidebar',
             posts: mainPost, facts: theFact,
             words: theWord, sidePosts: sidePost});
