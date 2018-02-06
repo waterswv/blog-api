@@ -56,7 +56,6 @@ app.get('/', function(req, res, next) {
         console.log('Error', err);
       }
       let theFact = fact[0];
-      console.log(theFact);
       res.render('index', {title: 'Bryan Mierke circa 1983', posts: post, facts: theFact});
     });
   });
