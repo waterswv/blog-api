@@ -9,9 +9,16 @@
 //require express in our app
 let express = require('express'),
   bodyParser = require('body-parser');
+let expressHbs = require('express-handlebars');
+
+// const path = require('path');
 
 // generate a new express app and call it 'app'
 let app = express();
+
+// View Engine SETUP
+app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: '.hbs'}));
+app.set('view engine', '.hbs');
 
 // setup db instance to leverage models
 let db = require('./models');
@@ -26,22 +33,34 @@ app.use(express.static(__dirname + '/public'));
 // body parser config to accept our datatypes
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Prevent CORS errors
-app.use(function(req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
-
-  //Remove caching
-  res.setHeader('Cache-Control', 'no-cache');
-  next();
-});
-
+// // Prevent CORS errors
+// app.use(function(req, res, next) {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader('Access-Control-Allow-Credentials', 'true');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
+//   res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
 //
-app.get('/', function (req, res) {
-   res.send('Nothing to see here...');
- });
+//   //Remove caching
+//   res.setHeader('Cache-Control', 'no-cache');
+//   next();
+// });
+
+// render HTML
+app.get('/', function(req, res, next) {
+  db.Post.find({}, function(err, post) {
+    if (err){
+      console.log('Error', err);
+    }
+    db.Fact.find({}, function(err, fact) {
+      if (err){
+        console.log('Error', err);
+      }
+      let theFact = fact[0];
+      console.log(theFact);
+      res.render('index', {title: 'Bryan Mierke circa 1983', posts: post, facts: theFact});
+    });
+  });
+});
 
  // API Controller Routes
 app.get('/api', controllers.api.index);
