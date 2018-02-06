@@ -4,11 +4,12 @@
 const db = require('../models');
 
 function index(req, res) {
-  db.Post.find({}, function(err, posts) {
+  db.Post.find({}, function(err, post) {
     if (err){
       console.log('Error', err);
     }
-    res.json(posts);
+    res.render('index', {title: 'Bryan Mierke circa 1983', posts: post});
+    // res.json(post);
   });
 }
 
