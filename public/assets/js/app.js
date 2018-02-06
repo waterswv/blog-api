@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*
 =======
 >>>>>>> a6874d17a988e7fad3cb4f55733a4b1ad97feeee
@@ -6,15 +5,7 @@
 
 $(document).ready( function(){
 
-<<<<<<< HEAD
 
-  // AJAX Calls for pulling in Posts, Word, Fact for each webpage.
-
-=======
-  /*
-  AJAX Calls for pulling in Posts, Word, Fact for each webpage.
-  */
->>>>>>> a6874d17a988e7fad3cb4f55733a4b1ad97feeee
 $.ajax({
   method: 'GET',
   url: 'http://localhost:8000/api/post',
@@ -33,17 +24,12 @@ $.ajax({
   success: onSuccessGenerateWords
 });
 
-<<<<<<< HEAD
+
 
 // Handling Functions built to generate HTML Snippets for each post,
 // side-post, Factoid, and Word section on the blog.
 
-=======
-/*
-Handling Functions built to generate HTML Snippets for each post,
-side-post, Factoid, and Word section on the blog.
-*/
->>>>>>> a6874d17a988e7fad3cb4f55733a4b1ad97feeee
+
 
   function onSuccessGeneratePosts(posts){
 
@@ -137,15 +123,6 @@ side-post, Factoid, and Word section on the blog.
 
 
 
-<<<<<<< HEAD
+
 });
 */
-=======
-
-
-
-
-
-
-});
->>>>>>> a6874d17a988e7fad3cb4f55733a4b1ad97feeee

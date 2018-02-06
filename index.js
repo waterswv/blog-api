@@ -53,12 +53,18 @@ app.get('/', function(req, res){
   console.log(__dirname);
 });
 
-// Render PDF
+// Render Resume
 app.get('/bryan_mierke.pdf', function(req, res){
   res.sendFile('views/bryan_mierke.pdf', {
     root: __dirname
   });
   console.log(__dirname);
+});
+
+app.get('/portfolio', function(req, res){
+  res.render('portfolio',
+    {title: 'Bryan Mierke circa 1983',
+    bodycss: 'no-sidebar'});
 });
 
 app.get('/blog', function(req, res, next) {
@@ -80,6 +86,7 @@ app.get('/blog', function(req, res, next) {
         let theWord = word[0];
         res.render('index',
           {title: 'Bryan Mierke circa 1983',
+          bodycss: 'right-sidebar',
           posts: mainPost, facts: theFact,
           words: theWord, sidePosts: sidePost});
       });
@@ -107,6 +114,7 @@ app.get('/:post_id', function(req, res, next) {
           let theWord = word[0];
           res.render('singlepost',
             {title: 'Bryan Mierke circa 1983',
+            bodycss: 'right-sidebar',
             posts: mainPost, facts: theFact,
             words: theWord, sidePosts: sidePost});
           });
