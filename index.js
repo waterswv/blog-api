@@ -53,6 +53,14 @@ app.get('/', function(req, res){
   console.log(__dirname);
 });
 
+// Render PDF
+app.get('/bryan_mierke.pdf', function(req, res){
+  res.sendFile('views/bryan_mierke.pdf', {
+    root: __dirname
+  });
+  console.log(__dirname);
+});
+
 app.get('/blog', function(req, res, next) {
   db.Post.find({}, function(err, post) {
     if (err){
