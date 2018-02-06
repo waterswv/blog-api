@@ -8,9 +8,9 @@
 * Mongoose.js
 
 ##### End Points
-* Overview: [api.bryanmierke.com](api.bryanmierke.com)
-* All Posts: [api.bryanmierke.com/posts](api.bryanmierke.com/[posts])
-* Word of the Day: [api.bryanmierke.com/word](api.bryanmierke.com/word)
-* Fact of the Day: [api.bryanmierke.com/fact](api.bryanmierke.com)
+* Overview: [www.bryanmierke.com/api](www.bryanmierke.com/api)
+* All Posts: [www.bryanmierke.com/api/posts](www.bryanmierke.com/api/post)
+* Word of the Day: [www.bryanmierke.com/api/word](www.bryanmierke.com/api/word)
+* Fact of the Day: [www.bryanmierke.com/api/fact](www.bryanmierke.com/api/fact)
 
 ###### Additional details coming soon ...
