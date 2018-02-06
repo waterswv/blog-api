@@ -7,12 +7,11 @@
 								<div id="content" class="8u 12u(mobile)">
 
 									<!-- Post -->
-                  {{# each posts}}
+
 										<article class="box post mainpost">
-                      <header>{{{this.postTitle}}}</header>
-                          {{{this.postContent}}}
+                      <header>{{{posts.postTitle}}}</header>
+                          {{{posts.postContent}}}
 										</article>
-                  {{/each}}
 								</div>
 
 							<!-- Sidebar -->
@@ -21,8 +20,19 @@
 									<!-- Excerpts -->
 										<section id='sideposts'>
 											<ul class="divided">
-
-
+												{{# each sidePosts}}
+												<li>
+										      <!-- Excerpt -->
+										        <article class="box excerpt">
+										          <header>
+										            <span class="date">{{this.postDate}}</span>
+										            <h3><a href="{{this.postURL}}" target='_blank'>{{{this.postTitle}}}</a></h3>
+										          </header>
+										          <p>{{this.sidePostContent}}
+										          </p>
+										        </article>
+										    </li>
+												{{/each}}
 											</ul>
 										</section>
 

@@ -51,6 +51,8 @@ app.get('/', function(req, res, next) {
     if (err){
       console.log('Error', err);
     }
+    let mainPost = post.pop();
+    let sidePost = post.reverse().slice(0, 3);
     db.Fact.find({}, function(err, fact) {
       if (err){
         console.log('Error', err);
@@ -61,7 +63,10 @@ app.get('/', function(req, res, next) {
           console.log('Error', err);
         }
         let theWord = word[0];
-        res.render('index', {title: 'Bryan Mierke circa 1983', posts: post, facts: theFact, words: theWord});
+        res.render('index',
+          {title: 'Bryan Mierke circa 1983',
+          posts: mainPost, facts: theFact,
+          words: theWord, sidePosts: sidePost});
       });
     });
   });
