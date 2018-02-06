@@ -45,20 +45,66 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //   next();
 // });
 
-// render HTML
-app.get('/', function(req, res, next) {
+// render HTML Routes:
+app.get('/', function(req, res){
+  res.sendFile('views/index.html', {
+    root: __dirname
+  });
+  console.log(__dirname);
+});
+
+app.get('/blog', function(req, res, next) {
   db.Post.find({}, function(err, post) {
     if (err){
       console.log('Error', err);
     }
+    let mainPost = post.pop();
+    let sidePost = post.reverse().slice(0, 3);
     db.Fact.find({}, function(err, fact) {
       if (err){
         console.log('Error', err);
       }
       let theFact = fact[0];
-      res.render('index', {title: 'Bryan Mierke circa 1983', posts: post, facts: theFact});
+      db.Word.find({}, function(err, word) {
+        if (err){
+          console.log('Error', err);
+        }
+        let theWord = word[0];
+        res.render('index',
+          {title: 'Bryan Mierke circa 1983',
+          posts: mainPost, facts: theFact,
+          words: theWord, sidePosts: sidePost});
+      });
     });
   });
+});
+
+app.get('/:post_id', function(req, res, next) {
+  db.Post.findById(req.params.post_id, function(err, mainPost) {
+    if (err){
+      console.log('Error', err);
+    }
+    db.Post.find({}, function(err, post){
+      // Skip 1st post & reverse order of remaining posts for sidebar.
+      let sidePost = post.reverse().slice(1, 4);
+      db.Fact.find({}, function(err, fact) {
+        if (err){
+          console.log('Error', err);
+        }
+        let theFact = fact[0];
+        db.Word.find({}, function(err, word) {
+          if (err){
+            console.log('Error', err);
+          }
+          let theWord = word[0];
+          res.render('singlepost',
+            {title: 'Bryan Mierke circa 1983',
+            posts: mainPost, facts: theFact,
+            words: theWord, sidePosts: sidePost});
+          });
+        });
+      });
+    });
 });
 
  // API Controller Routes
