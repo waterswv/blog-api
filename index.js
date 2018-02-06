@@ -46,11 +46,33 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // });
 
 // render HTML Routes:
-app.get('/', function(req, res){
-  res.sendFile('views/index.html', {
-    root: __dirname
+app.get('/', function(req, res, next){
+  db.Post.find({}, function(err, post){
+    if (err){
+      console.log('Error', err);
+    }
+    let mainPost = post.pop();
+    let sidePost = post.reverse().slice(0, 3);
+    db.Fact.find({}, function(err, fact) {
+      if (err){
+        console.log('Error', err);
+      }
+      let theFact = fact[0];
+      db.Word.find({}, function(err, word) {
+        if (err){
+          console.log('Error', err);
+        }
+        let theWord = word[0];
+        res.render('home',
+          {title: 'Bryan Mierke circa 1983',
+          bodycss: 'homepage',
+          theTitle: `<a href="/">Bryan Mierke</a></h1>
+          <p>- a software developer by the bay -</p>`,
+          posts: mainPost, facts: theFact,
+          words: theWord, sidePosts: sidePost});
+      });
+    });
   });
-  console.log(__dirname);
 });
 
 // Render Resume
@@ -64,6 +86,8 @@ app.get('/bryan_mierke.pdf', function(req, res){
 app.get('/portfolio', function(req, res){
   res.render('portfolio',
     {title: 'Bryan Mierke circa 1983',
+    theTitle: `<a href="/">My Projects</a></h1>
+    `,
     bodycss: 'no-sidebar'});
 });
 
@@ -86,6 +110,7 @@ app.get('/blog', function(req, res, next) {
         let theWord = word[0];
         res.render('index',
           {title: 'Bryan Mierke circa 1983',
+          theTitle: `<a href="/">The Blog</a></h1>`,
           bodycss: 'right-sidebar',
           posts: mainPost, facts: theFact,
           words: theWord, sidePosts: sidePost});
