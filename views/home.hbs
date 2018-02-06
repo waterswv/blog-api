@@ -1,0 +1,149 @@
+<!-- Features -->
+  <div id="features-wrapper">
+    <section id="features" class="container">
+      <header>
+        <h2><strong>Welcome.</strong> Below is just a little about me...</h2>
+      </header>
+      <div class="row">
+        <div class="4u 12u(mobile)">
+
+          <!-- Feature -->
+            <section>
+              <a href="https://roadtrippers.com/stories/bixby-canyon-bridge" target='_blank' class="image featured"><img src="images/bixby.jpg" alt="" /></a>
+              <header>
+                <h3>About Me & What I Do</h3>
+              </header>
+              <p>This section is a work in progress, but the short of it is I love to unplug
+                and go hunting for landscapes across California.</p>
+            </section>
+
+        </div>
+        <div class="4u 12u(mobile)">
+
+          <!-- Feature -->
+            <section>
+              <a href="/portfolio" class="image featured"><img src="images/poolpic.jpg" alt="" /></a>
+              <header>
+                <h3>Gallery of Projects</h3>
+              </header>
+              <p><a href="/portfolio">Here</a> are a few projects I've worked on. They are predominantly
+                built in <strong>vanilla javascript</strong>, <strong>CSS frameworks</strong>, and <strong>node.js</strong>.</p>
+            </section>
+
+        </div>
+        <div class="4u 12u(mobile)">
+
+          <!-- Feature -->
+            <section>
+              <a href="/bryan_mierke.pdf" class="image featured"><img src="images/resumepic.jpg" alt="" /></a>
+              <header>
+                <h3>Resume</h3>
+              </header>
+              <p><strong>Mini blurb: </strong>I have managed enterprise APIs & built full-stack js/node/rails projects.
+                I also have a passion for SMB SaaS products and have been successful in partnership negotiation & building teams.</p>
+            </section>
+
+        </div>
+      </div>
+      <!-- <ul class="actions">
+        <li><a href="#" class="button icon fa-file">Tell Me More</a></li>
+      </ul> -->
+    </section>
+  </div>
+
+<!-- Banner -->
+  <div id="banner-wrapper">
+    <div class="inner">
+    <a href="https://www.appycouple.com/wedding/bethanyandbryan/welcome/" target='_blank'><section id="banner" class="container">
+        <p style="color:white;">i carry your heart with me(<strong>i carry it in
+          my heart</strong>)</p>
+      </section></a>
+    </div>
+  </div>
+
+<!-- Main -->
+  <div id="main-wrapper">
+    <div id="main" class="container">
+      <div class="row">
+
+        <!-- Content -->
+          <div id="content" class="8u 12u(mobile)">
+
+            <!-- Post -->
+              <article class="box post">
+                <header>
+                  <h2><a href="#">{{{posts.postTitle}}}</a></h2>
+                </header>
+                <a href="#" class="image featured"><img src="images/weddingpic.jpg" alt="" /></a>
+                 {{{posts.postContent}}}
+                <ul class="actions">
+                  <li><a href="/{{posts._id}}" class="button icon fa-file">Continue Reading</a></li>
+                </ul>
+              </article>
+
+
+
+          </div>
+
+          <!-- Sidebar -->
+            <div id="sidebar" class="4u 12u(mobile)">
+              <!-- Excerpts -->
+                <section id='sideposts'>
+                  <ul class="divided">
+                    {{# each sidePosts}}
+                    <li>
+                      <!-- Excerpt -->
+                        <article class="box excerpt">
+                          <header>
+                            <span class="date">{{this.postDate}}</span>
+                            <h3><a href="/{{this._id}}">{{{this.postTitle}}}</a></h3>
+                          </header>
+                          <p>{{this.sidePostContent}}
+                          </p>
+                        </article>
+                    </li>
+                    {{/each}}
+                  </ul>
+                </section>
+
+              <!-- Highlights -->
+                <section>
+                  <ul class="divided">
+                    <li>
+
+                      <!-- Highlight -->
+                        <article class="box highlight dailyfact">
+                          <header>
+                                  <h3><a href="#">Today in Facts</a></h3>
+                                </header>
+                                <a href="#" class="image left"><img src="images/npmpicture.jpg" alt="" /></a>
+                                <p>{{facts.dailyFactContent}}</p>
+                                <ul class="actions">
+                                  <li><a href="{{facts.dailyFactURL}}" class="button icon fa-file">Learn More</a></li>
+                                </ul>
+                        </article>
+
+                    </li>
+                    <li>
+
+                      <!-- Highlight -->
+                        <article class="box highlight dailyword">
+                          <header>
+                            <h3><a href="#">Word of the Day!</a></h3>
+                          </header>
+                          <a href="#" class="image left"><img src="images/merriamwebpic.jpg" alt="" /></a>
+                          <p>Today's word of the day is <strong>{{words.dailyWord}}</strong></p>
+                          <ul class="actions">
+                            <li><a href="{{words.dailyWordURL}}" class="button icon fa-file" target='_blank'>Define It</a></li>
+                          </ul>
+                        </article>
+
+                    </li>
+                  </ul>
+                </section>
+
+            </div>
+
+        </div>
+      </div>
+    </div>
