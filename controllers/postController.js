@@ -8,8 +8,8 @@ function index(req, res) {
     if (err){
       console.log('Error', err);
     }
-    res.render('index', {title: 'Bryan Mierke circa 1983', posts: post});
-    // res.json(post);
+    // res.render('index', {title: 'Bryan Mierke circa 1983', posts: post});
+    res.json(post);
   });
 }
 

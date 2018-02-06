@@ -56,7 +56,13 @@ app.get('/', function(req, res, next) {
         console.log('Error', err);
       }
       let theFact = fact[0];
-      res.render('index', {title: 'Bryan Mierke circa 1983', posts: post, facts: theFact});
+      db.Word.find({}, function(err, word) {
+        if (err){
+          console.log('Error', err);
+        }
+        let theWord = word[0];
+        res.render('index', {title: 'Bryan Mierke circa 1983', posts: post, facts: theFact, words: theWord});
+      });
     });
   });
 });
