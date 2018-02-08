@@ -57,12 +57,12 @@ app.get('/', function(req, res, next){
       if (err){
         console.log('Error', err);
       }
-      let theFact = fact[0];
+      let theFact = fact[fact.length-1];
       db.Word.find({}, function(err, word) {
         if (err){
           console.log('Error', err);
         }
-        let theWord = word[0];
+        let theWord = word[word.length-1];
         res.render('home',
           {title: 'Bryan Mierke circa 1983',
           bodycss: 'homepage',
@@ -102,12 +102,12 @@ app.get('/blog', function(req, res, next) {
       if (err){
         console.log('Error', err);
       }
-      let theFact = fact[0];
+      let theFact = fact[fact.length-1];
       db.Word.find({}, function(err, word) {
         if (err){
           console.log('Error', err);
         }
-        let theWord = word[0];
+        let theWord = word[word.length-1];
         res.render('index',
           {title: 'Bryan Mierke circa 1983',
           theTitle: `<a href="/">The Blog</a></h1>`,
@@ -131,12 +131,12 @@ app.get('/:post_id', function(req, res, next) {
         if (err){
           console.log('Error', err);
         }
-        let theFact = fact[0];
+        let theFact = fact[fact.length-1];
         db.Word.find({}, function(err, word) {
           if (err){
             console.log('Error', err);
           }
-          let theWord = word[0];
+          let theWord = word[word.length-1];
           res.render('singlepost',
             {theTitle: `<a href="/">The Blog</a></h1>`,
             bodycss: 'right-sidebar',
