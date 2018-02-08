@@ -132,8 +132,8 @@ app.get('/blog', function(req, res, next) {
   });
 });
 
-app.get('/:post_id', function(req, res, next) {
-  db.Post.findById(req.params.post_id, function(err, mainPost) {
+app.get('/:slug', function(req, res, next) {
+  db.Post.findOne({'slug': req.params.slug}, function(err, mainPost) {
     if (err){
       console.log('Error', err);
     }
