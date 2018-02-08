@@ -10,6 +10,7 @@
 let express = require('express'),
   bodyParser = require('body-parser');
 let expressHbs = require('express-handlebars');
+let moment = require('moment');
 
 // const path = require('path');
 
@@ -53,6 +54,12 @@ app.get('/', function(req, res, next){
     }
     let mainPost = post.pop();
     let sidePost = post.reverse().slice(0, 3);
+    let updateSidePosts = sidePost.map((post) => {
+      var dateForm = moment(post.postDate, moment.HTML5_FMT.DATETIME_LOCAL_MS);
+      let newdate = dateForm.format('MMMM Do');
+      post.formattedDate = newdate;
+      return post;
+    });
     db.Fact.find({}, function(err, fact) {
       if (err){
         console.log('Error', err);
@@ -69,7 +76,7 @@ app.get('/', function(req, res, next){
           theTitle: `<a href="/">Bryan Mierke</a></h1>
           <p>- a software developer by the bay -</p>`,
           posts: mainPost, facts: theFact,
-          words: theWord, sidePosts: sidePost});
+          words: theWord, sidePosts: updateSidePosts});
       });
     });
   });
@@ -98,6 +105,12 @@ app.get('/blog', function(req, res, next) {
     }
     let mainPost = post.pop();
     let sidePost = post.reverse().slice(0, 3);
+    let updateSidePosts = sidePost.map((post) => {
+      var dateForm = moment(post.postDate, moment.HTML5_FMT.DATETIME_LOCAL_MS);
+      let newdate = dateForm.format('MMMM Do');
+      post.formattedDate = newdate;
+      return post;
+    });
     db.Fact.find({}, function(err, fact) {
       if (err){
         console.log('Error', err);
@@ -113,7 +126,7 @@ app.get('/blog', function(req, res, next) {
           theTitle: `<a href="/">The Blog</a></h1>`,
           bodycss: 'right-sidebar',
           posts: mainPost, facts: theFact,
-          words: theWord, sidePosts: sidePost});
+          words: theWord, sidePosts: updateSidePosts});
       });
     });
   });
@@ -127,6 +140,12 @@ app.get('/:post_id', function(req, res, next) {
     db.Post.find({}, function(err, post){
       // Skip 1st post & reverse order of remaining posts for sidebar.
       let sidePost = post.reverse().slice(1, 4);
+      let updateSidePosts = sidePost.map((post) => {
+        var dateForm = moment(post.postDate, moment.HTML5_FMT.DATETIME_LOCAL_MS);
+        let newdate = dateForm.format('MMMM Do');
+        post.formattedDate = newdate;
+        return post;
+      });
       db.Fact.find({}, function(err, fact) {
         if (err){
           console.log('Error', err);
@@ -141,7 +160,7 @@ app.get('/:post_id', function(req, res, next) {
             {theTitle: `<a href="/">The Blog</a></h1>`,
             bodycss: 'right-sidebar',
             posts: mainPost, facts: theFact,
-            words: theWord, sidePosts: sidePost});
+            words: theWord, sidePosts: updateSidePosts});
           });
         });
       });
