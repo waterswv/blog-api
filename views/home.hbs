@@ -72,9 +72,9 @@
             <!-- Post -->
               <article class="box post">
                 <header>
-                  <h2><a href="#">{{{posts.postTitle}}}</a></h2>
+                  <h2><a href="/{{posts.slug}}">{{{posts.postTitle}}}</a></h2>
                 </header>
-                <a href="#" class="image featured"><img src="images/weddingpic.jpg" alt="" /></a>
+                <!-- <a href="#" class="image featured"><img src="images/weddingpic.jpg" alt="" /></a> -->
                  {{{posts.postContent}}}
                 <ul class="actions">
                   <li><a href="/{{posts.slug}}" class="button icon fa-file">Continue Reading</a></li>
@@ -98,8 +98,15 @@
                             <span class="date">{{this.formattedDate}}</span>
                             <h3><a href="/{{this.slug}}">{{{this.postTitle}}}</a></h3>
                           </header>
-                          <p>{{this.sidePostContent}}
+                          <p style="overflow: hidden;
+                                    display: -webkit-box;
+                                    -webkit-line-clamp: 3;
+                                    -webkit-box-orient: vertical; ">
+                          {{{this.sidePostContent}}}
                           </p>
+                          <ul class="actions">
+                            <li><a href="/{{this.slug}}" class="button icon fa-file">Read More</a></li>
+                          </ul>
                         </article>
                     </li>
                     {{/each}}
