@@ -11,6 +11,8 @@ let express = require('express'),
   bodyParser = require('body-parser');
 let expressHbs = require('express-handlebars');
 let moment = require('moment');
+var nodemailer = require('nodemailer');
+
 
 // const path = require('path');
 
@@ -26,6 +28,14 @@ let db = require('./models');
 
 // setup instance of controllers to to leverage the controller functions
 let controllers = require('./controllers');
+
+var transporter = nodemailer.createTransport({
+ service: 'gmail',
+ auth: {
+        user: 'bryans.furniture2017@gmail.com',
+        pass: 'Mierke2019'
+    }
+});
 
 
 // serve static files from public folder
@@ -169,6 +179,24 @@ app.get('/:slug', function(req, res, next) {
 
  // API Controller Routes
 app.get('/api', controllers.api.index);
+app.post('/api', function(req, res){
+  let data = req.body;
+  console.log(data);
+  const mailOptions = {
+    from: data.email, // sender address
+    to: 'blog@bryanmierke.com', // list of receivers
+    subject: data.name + ' submitted a form on BryanMierke.com', // Subject line
+    html: data.message// plain text body
+    };
+  transporter.sendMail(mailOptions, function (err, info) {
+     if(err)
+       console.log(err)
+     else
+       console.log(info);
+       res.json('success');
+  });
+
+});
 
 // Post Controller Routes
 app.get('/api/post', controllers.post.index);
