@@ -1,9 +1,36 @@
+$(document).ready( function(){
+
+  // Add pool event listener and ajax call
+  $('form').on('submit', function(e){
+    e.preventDefault();
+    let data = $(this).serialize();
+    $.ajax({
+      method: 'POST',
+      url: '/api',
+      data: data,
+      success: handleSubmitSuccess,
+    });
+    $(this).trigger('reset');
+  });
+
+$(document).ajaxComplete(listenThankYou());
+
+});
+function listenThankYou() {
+  $('html').on('click', function(){
+    $('#message h4').hide('slow');
+  });
+}
+function handleSubmitSuccess(){
+  console.log("Form data submitted correctly")
+  $('#message').append('<h4 style=`color:red;`>Thank you for your submission</h4>');
+
+}
 /*
 =======
 >>>>>>> a6874d17a988e7fad3cb4f55733a4b1ad97feeee
 // App.js will be used to call API to retrieve all posts.
 
-$(document).ready( function(){
 
 
 $.ajax({
@@ -124,5 +151,5 @@ $.ajax({
 
 
 
-});
+
 */
