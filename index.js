@@ -149,7 +149,7 @@ app.get('/:slug', function(req, res, next) {
     }
     db.Post.find({}, function(err, post){
       // Skip 1st post & reverse order of remaining posts for sidebar.
-      let sidePost = post.reverse().slice(1, 4);
+      let sidePost = post.reverse().slice(0, 4);
       let updateSidePosts = sidePost.map((post) => {
         if(post.slug !== req.params.slug)
         {
