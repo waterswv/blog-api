@@ -11,7 +11,7 @@ let express = require('express'),
   bodyParser = require('body-parser');
 let expressHbs = require('express-handlebars');
 let moment = require('moment');
-var nodemailer = require('nodemailer');
+let nodemailer = require('nodemailer');
 
 
 // const path = require('path');
@@ -65,10 +65,10 @@ app.get('/', function(req, res, next){
     let mainPost = post.pop();
     let sidePost = post.reverse().slice(0, 3);
     let updateSidePosts = sidePost.map((post) => {
-      var dateForm = moment(post.postDate, moment.HTML5_FMT.DATETIME_LOCAL_MS);
-      let newdate = dateForm.format('MMMM Do');
-      post.formattedDate = newdate;
-      return post;
+        let dateForm = moment(post.postDate, moment.HTML5_FMT.DATETIME_LOCAL_MS);
+        let newdate = dateForm.format('MMMM Do');
+        post.formattedDate = newdate;
+        return post;
     });
     db.Fact.find({}, function(err, fact) {
       if (err){
@@ -151,10 +151,14 @@ app.get('/:slug', function(req, res, next) {
       // Skip 1st post & reverse order of remaining posts for sidebar.
       let sidePost = post.reverse().slice(1, 4);
       let updateSidePosts = sidePost.map((post) => {
-        var dateForm = moment(post.postDate, moment.HTML5_FMT.DATETIME_LOCAL_MS);
-        let newdate = dateForm.format('MMMM Do');
-        post.formattedDate = newdate;
-        return post;
+        if(post.slug !== req.params.slug)
+        {
+          let dateForm = moment(post.postDate, moment.HTML5_FMT.DATETIME_LOCAL_MS);
+          let newdate = dateForm.format('MMMM Do');
+          post.formattedDate = newdate;
+          return post;
+        }
+        return;
       });
       db.Fact.find({}, function(err, fact) {
         if (err){
@@ -179,24 +183,7 @@ app.get('/:slug', function(req, res, next) {
 
  // API Controller Routes
 app.get('/api', controllers.api.index);
-app.post('/api', function(req, res){
-  let data = req.body;
-  console.log(data);
-  const mailOptions = {
-    from: data.email, // sender address
-    to: 'blog@bryanmierke.com', // list of receivers
-    subject: data.name + ' submitted a form on BryanMierke.com', // Subject line
-    html: data.message// plain text body
-    };
-  transporter.sendMail(mailOptions, function (err, info) {
-     if(err)
-       console.log(err)
-     else
-       console.log(info);
-       res.json('success');
-  });
-
-});
+app.post('/api', controllers.api.create);
 
 // Post Controller Routes
 app.get('/api/post', controllers.post.index);
