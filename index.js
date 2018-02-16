@@ -11,7 +11,6 @@ let express = require('express'),
   bodyParser = require('body-parser');
 let expressHbs = require('express-handlebars');
 let moment = require('moment');
-let nodemailer = require('nodemailer');
 
 
 // const path = require('path');
@@ -29,32 +28,12 @@ let db = require('./models');
 // setup instance of controllers to to leverage the controller functions
 let controllers = require('./controllers');
 
-var transporter = nodemailer.createTransport({
- service: 'gmail',
- auth: {
-        user: 'bryans.furniture2017@gmail.com',
-        pass: 'Mierke2019'
-    }
-});
-
-
 // serve static files from public folder
 app.use(express.static(__dirname + '/public'));
 
 // body parser config to accept our datatypes
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// // Prevent CORS errors
-// app.use(function(req, res, next) {
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   res.setHeader('Access-Control-Allow-Credentials', 'true');
-//   res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
-//   res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
-//
-//   //Remove caching
-//   res.setHeader('Cache-Control', 'no-cache');
-//   next();
-// });
 
 // render HTML Routes:
 app.get('/', function(req, res, next){

@@ -24,7 +24,7 @@ function create(req, res){
     from: data.email, // sender address
     to: 'blog@bryanmierke.com', // list of receivers
     subject: data.name + ' submitted a form on BryanMierke.com', // Subject line
-    html: data.message// plain text body
+    html: data.message + ' The request came from the following email: ' + data.email // plain text body
     };
   transporter.sendMail(mailOptions, function (err, info) {
      if(err)
