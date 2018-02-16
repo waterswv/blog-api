@@ -83,7 +83,7 @@ app.get('/', function(req, res, next){
         res.render('home',
           {title: 'Bryan Mierke circa 1983',
           bodycss: 'homepage',
-          theTitle: `<a href="/">Bryan Mierke</a></h1>
+          theTitle: `Bryan Mierke</h1>
           <p>- a software developer by the bay -</p>`,
           posts: mainPost, facts: theFact,
           words: theWord, sidePosts: updateSidePosts});
@@ -103,8 +103,7 @@ app.get('/bryan_mierke.pdf', function(req, res){
 app.get('/portfolio', function(req, res){
   res.render('portfolio',
     {title: 'Bryan Mierke circa 1983',
-    theTitle: `<a href="/">My Projects</a></h1>
-    `,
+    theTitle: `My Projects</h1>`,
     bodycss: 'no-sidebar'});
 });
 
@@ -114,7 +113,7 @@ app.get('/blog', function(req, res, next) {
       console.log('Error', err);
     }
     let mainPost = post.pop();
-    let sidePost = post.reverse().slice(0, 3);
+    let sidePost = post.reverse();
     let updateSidePosts = sidePost.map((post) => {
       var dateForm = moment(post.postDate, moment.HTML5_FMT.DATETIME_LOCAL_MS);
       let newdate = dateForm.format('MMMM Do');
@@ -133,7 +132,7 @@ app.get('/blog', function(req, res, next) {
         let theWord = word[word.length-1];
         res.render('index',
           {title: 'Bryan Mierke circa 1983',
-          theTitle: `<a href="/">The Blog</a></h1>`,
+          theTitle: `The Blog</h1>`,
           bodycss: 'right-sidebar',
           posts: mainPost, facts: theFact,
           words: theWord, sidePosts: updateSidePosts});
@@ -149,16 +148,13 @@ app.get('/:slug', function(req, res, next) {
     }
     db.Post.find({}, function(err, post){
       // Skip 1st post & reverse order of remaining posts for sidebar.
-      let sidePost = post.reverse().slice(0, 4);
-      let updateSidePosts = sidePost.map((post) => {
-        if(post.slug !== req.params.slug)
-        {
+      let sidePost = post.filter( post => post.slug !== req.params.slug);
+      let sidePosts = sidePost.reverse().slice(0, 3);
+      let updateSidePosts = sidePosts.map((post) => {
           let dateForm = moment(post.postDate, moment.HTML5_FMT.DATETIME_LOCAL_MS);
           let newdate = dateForm.format('MMMM Do');
           post.formattedDate = newdate;
           return post;
-        }
-        return;
       });
       db.Fact.find({}, function(err, fact) {
         if (err){
@@ -171,7 +167,7 @@ app.get('/:slug', function(req, res, next) {
           }
           let theWord = word[word.length-1];
           res.render('singlepost',
-            {theTitle: `<a href="/">The Blog</a></h1>`,
+            {theTitle: `The Blog</h1>`,
             bodycss: 'right-sidebar',
             posts: mainPost, facts: theFact,
             words: theWord, sidePosts: updateSidePosts});
