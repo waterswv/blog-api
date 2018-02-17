@@ -86,6 +86,13 @@ app.get('/portfolio', function(req, res){
     bodycss: 'no-sidebar'});
 });
 
+app.get('/about', function(req, res){
+  res.render('about',
+    {title: 'Bryan Mierke circa 1983',
+    theTitle: `About Me</h1>`,
+    bodycss: 'no-sidebar'});
+});
+
 app.get('/blog', function(req, res, next) {
   db.Post.find({}, function(err, post) {
     if (err){
