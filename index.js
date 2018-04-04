@@ -72,8 +72,8 @@ app.get('/', function(req, res, next){
 });
 
 // Render Resume
-app.get('/bryan_mierke.pdf', function(req, res){
-  res.sendFile('views/bryan_mierke.pdf', {
+app.get('/bryan_mierke_res.pdf', function(req, res){
+  res.sendFile('views/bryan_mierke_res.pdf', {
     root: __dirname
   });
   console.log(__dirname);
