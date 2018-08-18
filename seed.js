@@ -1,4 +1,47 @@
 // This is TEST Data for the Template.
+let futurePost = [
+{   postTitle: `<h2>How to I learned React.Children <br/>`, 
+    postContent: `function RadioOption(props) {
+  return (
+    <label>
+      <input type="radio" value={props.value} name={props.name} />
+      {props.label}
+    </label>
+  )
+}
+
+function renderChildren(props) {
+  return React.Children.map(props.children, child => {
+    console.log(child.type)
+    if (child.type === RadioOption)
+      return React.cloneElement(child, {
+        name: props.name
+      })
+    else
+      return child
+  })
+}
+
+function RadioGroup(props) {
+  return (
+    <div className="radio-group">
+      <h1>Choose your favorite Blizzard Game:</h1>
+      {renderChildren(props)}
+    </div>
+  )
+}
+
+function WhereImUsingRadioGroups() {
+  return (
+    <RadioGroup name="blizzard-games">
+      <RadioOption label="Warcraft 2" value="wc2" />
+      <RadioOption label="Warcraft 3" value="wc3" />
+      <RadioOption label="Starcraft 1" value="sc1" />
+      <RadioOption label="Starcraft 2" value="sc2" />
+    </RadioGroup>
+  )
+}`}
+]
 let posts =
 [{
   postDate: 'Jan 30',
