@@ -1,6 +1,6 @@
 
-let mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
+let mongoose = require('mongoose')
+let Schema = mongoose.Schema
 
 let FactSchema = new Schema({
   dailyFactTitle: String,
@@ -11,6 +11,6 @@ let FactSchema = new Schema({
 
 })
 
-let Fact = mongoose.model('Fact', FactSchema);
+let Fact = mongoose.model('Fact', FactSchema)
 
-module.exports = Fact;
+module.exports = Fact

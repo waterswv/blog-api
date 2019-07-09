@@ -1,6 +1,6 @@
 
-let mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
+let mongoose = require('mongoose')
+let Schema = mongoose.Schema
 
 let WordSchema = new Schema({
   dailyWord: String,
@@ -11,6 +11,6 @@ let WordSchema = new Schema({
 
 })
 
-let Word = mongoose.model('Word', WordSchema);
+let Word = mongoose.model('Word', WordSchema)
 
-module.exports = Word;
+module.exports = Word
