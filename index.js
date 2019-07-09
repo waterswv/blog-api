@@ -61,7 +61,7 @@ app.get('/', function (req, res, next) {
           title: 'Bryan Mierke circa 1983',
           bodycss: 'homepage',
           theTitle: `Bryan Mierke</h1>
-          <p>- a software developer by the bay -</p>`,
+          <p>- a software developer in the desert -</p>`,
           posts: mainPost,
           facts: theFact,
           words: theWord,
@@ -73,8 +73,8 @@ app.get('/', function (req, res, next) {
 })
 
 // Render Resume
-app.get('/bryan_mierke_res_jul_18.pdf', function (req, res) {
-  res.sendFile('views/bryan_mierke_res_jul_18.pdf', {
+app.get('/bryan_mierke_may_2019_resume.pdf', function (req, res) {
+  res.sendFile('views/bryan_mierke_may_2019_resume.pdf', {
     root: __dirname
   })
   console.log(__dirname)
